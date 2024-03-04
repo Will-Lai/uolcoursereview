@@ -3,6 +3,7 @@ package com.example.uolcoursereview.controller;
 import com.example.uolcoursereview.dto.CourseReviewQueryParams;
 import com.example.uolcoursereview.dto.CourseReviewRequest;
 import com.example.uolcoursereview.model.CourseReview;
+import com.example.uolcoursereview.rabbitmq.RabbitMQProducer;
 import com.example.uolcoursereview.service.CourseReviewService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ public class CourseReviewController {
 
     @Autowired
     private CourseReviewService courseReviewService;
+
+    @Autowired
+    private RabbitMQProducer producer;
 
     @GetMapping("/courseReviews")
     public ResponseEntity<List<CourseReview>> getCourseReviews(
@@ -52,4 +56,9 @@ public class CourseReviewController {
         return ResponseEntity.status(HttpStatus.CREATED).body(courseReview);
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<String> search(@RequestParam("keywords") String keywords) {
+        producer.sendMessage(keywords);
+        return ResponseEntity.ok("sent to rabbitMQ ...");
+    }
 }

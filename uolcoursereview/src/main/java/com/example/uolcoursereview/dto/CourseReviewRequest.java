@@ -1,7 +1,9 @@
 package com.example.uolcoursereview.dto;
 import jakarta.validation.constraints.NotNull;
 
-public class CourseReviewRequest {
+import java.io.Serializable;
+
+public class CourseReviewRequest implements Serializable {
 
 
     @NotNull

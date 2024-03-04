@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f7b2e02e-6e88-4275-a051-d7e0900bab9b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../uolcoursereview/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../uolcoursereview/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uolcoursereview/src/main/java/com/example/uolcoursereview/dto/CourseReviewRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uolcoursereview/src/main/java/com/example/uolcoursereview/dto/CourseReviewRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../uolcoursereview/src/main/java/com/example/uolcoursereview/rabbitmq/RabbitConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../uolcoursereview/src/main/java/com/example/uolcoursereview/rabbitmq/RabbitConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +26,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/apple/Desktop/coding/uol/uolcoursereview/demo1",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -60,6 +62,7 @@
       <option name="presentableId" value="Default" />
       <updated>1704900599415</updated>
       <workItem from="1704900600735" duration="20000" />
+      <workItem from="1709564011321" duration="82000" />
     </task>
     <servers />
   </component>
