@@ -1,5 +1,6 @@
 package com.example.uolcoursereview.service;
 
+import com.example.uolcoursereview.dto.CourseReviewES;
 import com.example.uolcoursereview.dto.CourseReviewQueryParams;
 import com.example.uolcoursereview.dto.CourseReviewRequest;
 import com.example.uolcoursereview.model.CourseReview;
@@ -12,4 +13,6 @@ public interface CourseReviewService {
     List<CourseReview> getCourseReviews(CourseReviewQueryParams courseReviewQueryParams);
 
     Integer createCourseReview(CourseReviewRequest courseReviewRequest);
+
+    CourseReviewES convertToEsObject(CourseReview courseReview);
 }

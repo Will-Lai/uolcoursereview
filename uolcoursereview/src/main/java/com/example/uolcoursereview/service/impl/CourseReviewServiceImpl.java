@@ -1,6 +1,7 @@
 package com.example.uolcoursereview.service.impl;
 
 import com.example.uolcoursereview.dao.CourseReviewDao;
+import com.example.uolcoursereview.dto.CourseReviewES;
 import com.example.uolcoursereview.dto.CourseReviewQueryParams;
 import com.example.uolcoursereview.dto.CourseReviewRequest;
 import com.example.uolcoursereview.model.CourseReview;
@@ -29,5 +30,21 @@ public class CourseReviewServiceImpl implements CourseReviewService {
     @Override
     public Integer createCourseReview(CourseReviewRequest courseReviewRequest) {
         return courseReviewDao.createCourseReview(courseReviewRequest);
+    }
+
+    @Override
+    public CourseReviewES convertToEsObject(CourseReview courseReview) {
+
+        CourseReviewES courseReviewES = new CourseReviewES(
+                String.valueOf(courseReview.getId()),
+                courseReview.getCourseCode(),
+                courseReview.getRating(),
+                courseReview.getDifficulty(),
+                courseReview.getWorkload(),
+                courseReview.getStudyHourPerWeek(),
+                courseReview.getReview()
+        );
+
+        return courseReviewES;
     }
 }

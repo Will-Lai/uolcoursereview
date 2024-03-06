@@ -23,6 +23,16 @@ public class RabbitMQConfig {
     @Value("${rabbitmq.routing.key}")
     private String searchRoutingKey;
 
+
+    @Value("${rabbitmq.queue.es.name}")
+    private String esQueue;
+
+    @Value("${rabbitmq.exchange.es.name}")
+    private String esExchange;
+
+    @Value("${rabbitmq.routing.es.key}")
+    private String esRoutingKey;
+
     @Bean
     public Queue queue() {
         return new Queue(searchQueue);
@@ -34,11 +44,29 @@ public class RabbitMQConfig {
     }
 
     @Bean
+    public Queue esQueue() {
+        return new Queue(esQueue);
+    };
+
+    @Bean
+    public TopicExchange esExchange() {
+        return new TopicExchange(esExchange);
+    }
+
+    @Bean
     public Binding binding() {
         return BindingBuilder
                 .bind(queue())
                 .to(exchange())
                 .with(searchRoutingKey);
+    }
+
+    @Bean
+    public Binding esBinding() {
+        return BindingBuilder
+                .bind(esQueue())
+                .to(esExchange())
+                .with(esRoutingKey);
     }
 
     @Bean
