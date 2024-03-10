@@ -76,12 +76,12 @@ public class CourseReviewController {
         return new ResponseEntity<>(courseReviewESList, HttpStatus.OK);
     }
 
-    /*
+
     @GetMapping("/searchAll")
     public ResponseEntity<Object> searchAll() throws IOException {
         List<CourseReviewES> courseReviewESList = elasticSearchQuery.searchAllDocuments();
 
         return new ResponseEntity<>(courseReviewESList, HttpStatus.OK);
     }
-    */
+
 }

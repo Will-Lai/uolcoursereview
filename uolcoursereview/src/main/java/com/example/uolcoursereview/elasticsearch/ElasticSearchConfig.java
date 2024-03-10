@@ -20,39 +20,13 @@ public class ElasticSearchConfig {
     private String host;
 
     @Value("${es.port}")
-    private String port;
+    private Integer port;
 
-
-//    @Bean
-//    public RestClient getRestClient() {
-//        RestClient restClient = RestClient.builder(
-//                new HttpHost(this.host, 9200)).build();
-//        return restClient;
-//    }
-//
-//    @Bean
-//    public ElasticsearchTransport getElasticsearchTransport() {
-//        return new RestClientTransport(getRestClient(), new JacksonJsonpMapper());
-//    }
-//
-//    @Bean
-//    public ElasticsearchClient getElasticsearchClient() {
-//        ElasticsearchClient client = new ElasticsearchClient(getElasticsearchTransport());
-//        return client;
-//    }
-
-//    @Override
-//    public ClientConfiguration clientConfiguration() {
-//        System.out.println("connecting to es....");
-//        return ClientConfiguration.builder()
-//                .connectedTo(host + ":" + port)
-//                .build();
-//    }
 
     @Bean
     public org.elasticsearch.client.RestClient getRestClient() {
         org.elasticsearch.client.RestClient restClient = RestClient.builder(
-                new HttpHost("localhost", 9200)).build();
+                new HttpHost(host, port)).build();
         return restClient;
     }
 

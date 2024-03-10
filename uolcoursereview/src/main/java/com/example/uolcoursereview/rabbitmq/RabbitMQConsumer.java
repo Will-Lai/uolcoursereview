@@ -17,7 +17,7 @@ public class RabbitMQConsumer {
     @Autowired
     private ElasticSearchQuery esQuery;
 
-    @RabbitListener(queues = {"${rabbitmq.queue.name}"})
+    @RabbitListener(queues = {"${rabbitmq.queue.es.name}"})
     public void consume(CourseReviewES courseReviewES) throws IOException {
         LOGGER.info(String.format("Received message -> %s", courseReviewES.toString()));
         LOGGER.info("courseReviewES id: {}, name: {}, review: {}", courseReviewES.getId(), courseReviewES.getCourseCode(), courseReviewES.getReview());

@@ -51,7 +51,7 @@ public class ElasticSearchQuery {
             courseReviewESList.add((CourseReviewES) object.source());
         }
 
-        System.out.println("searchAllDocuments...");
+        System.out.println("searchAllDocuments in elastic earch...");
         return courseReviewESList;
     }
 

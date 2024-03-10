@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class RabbitMQProducer {
 
-    @Value("${rabbitmq.exchange.name}")
+    @Value("${rabbitmq.exchange.es.name}")
     private String exchange;
 
-    @Value("${rabbitmq.routing.key}")
+    @Value("${rabbitmq.routing.es.key}")
     private String routingKey;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RabbitMQProducer.class);
