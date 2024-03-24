@@ -54,10 +54,16 @@ public class CourseReviewServiceImpl implements CourseReviewService {
     }
 
     @Override
+    public void updateCourseReview(Integer courseReviewId, CourseReviewRequest courseReviewRequest) {
+        courseReviewDao.updateCourseReview(courseReviewId, courseReviewRequest);
+    }
+
+    @Override
     public CourseReviewES convertToEsObject(CourseReview courseReview) {
 
         CourseReviewES courseReviewES = new CourseReviewES(
-                String.valueOf(courseReview.getId()),
+                courseReview.getId(),
+                courseReview.getStudentId(),
                 courseReview.getCourseCode(),
                 courseReview.getRating(),
                 courseReview.getDifficulty(),

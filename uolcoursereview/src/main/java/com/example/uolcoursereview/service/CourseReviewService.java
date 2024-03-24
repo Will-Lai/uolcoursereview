@@ -14,5 +14,7 @@ public interface CourseReviewService {
 
     Integer createCourseReview(CourseReviewRequest courseReviewRequest);
 
+    void updateCourseReview(Integer courseReviewId, CourseReviewRequest courseReviewRequest);
+
     CourseReviewES convertToEsObject(CourseReview courseReview);
 }

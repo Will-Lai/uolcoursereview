@@ -62,13 +62,33 @@ public class CourseReviewController {
 
         CourseReview courseReview = courseReviewService.getCourseReviewById(courseReviewId);
         System.out.println("mysql generated Id: " + courseReviewId);
+        System.out.println("studentId: " + courseReview.getStudentId());
 
         // convert java object to object for elastic search
         CourseReviewES courseReviewES = courseReviewService.convertToEsObject(courseReview);
+        System.out.println("courseReviewES studentId: " + courseReviewES.getStudentId());
 
         // send it to rabbitmq
         producer.sendMessage(courseReviewES);
         return ResponseEntity.status(HttpStatus.CREATED).body(courseReview);
+    }
+
+    @PutMapping("/courseReviews/{courseReviewId}")
+    public ResponseEntity<CourseReview> updateCourseReview(@PathVariable Integer courseReviewId, @RequestBody @Valid CourseReviewRequest courseReviewRequest) {
+        // check if review exists
+        CourseReview courseReview = courseReviewService.getCourseReviewById(courseReviewId);
+        if (courseReview == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+        courseReviewService.updateCourseReview(courseReviewId, courseReviewRequest);
+        CourseReview updatedCourseReview = courseReviewService.getCourseReviewById(courseReviewId);
+
+        // need to update es
+        CourseReviewES courseReviewES = courseReviewService.convertToEsObject(updatedCourseReview);
+        producer.sendMessage(courseReviewES);
+
+        return ResponseEntity.status(HttpStatus.OK).body(updatedCourseReview);
     }
 
     @GetMapping("/search")

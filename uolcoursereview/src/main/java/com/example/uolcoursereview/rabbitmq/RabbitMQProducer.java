@@ -27,7 +27,7 @@ public class RabbitMQProducer {
 
     public void sendMessage(CourseReviewES courseReviewES) {
         LOGGER.info(String.format("Message sent -> %s", courseReviewES.toString()));
-        LOGGER.info("courseReviewES id: {}, name: {}, review: {}", courseReviewES.getId(), courseReviewES.getCourseCode(), courseReviewES.getReview());
+        LOGGER.info("courseReviewES id: {}, studentId:{}, name: {}, review: {}", courseReviewES.getId(), courseReviewES.getStudentId(), courseReviewES.getCourseCode(), courseReviewES.getReview());
         rabbitTemplate.convertAndSend(exchange, routingKey, courseReviewES);
     }
 }

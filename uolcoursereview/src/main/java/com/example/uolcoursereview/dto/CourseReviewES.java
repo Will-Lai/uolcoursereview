@@ -9,7 +9,10 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 public class CourseReviewES {
 
     @Id
-    String id;
+    Integer id;
+
+    @Field(type = FieldType.Integer, name = "studentId")
+    Integer studentId;
 
     @Field(type = FieldType.Text, name = "courseCode")
     String courseCode;
@@ -32,8 +35,9 @@ public class CourseReviewES {
     public CourseReviewES() {
     }
 
-    public CourseReviewES(String id, String courseCode, Integer rating, Integer difficulty, Integer workload, Integer studyHourPerWeek, String review) {
+    public CourseReviewES(Integer id, Integer studentId, String courseCode, Integer rating, Integer difficulty, Integer workload, Integer studyHourPerWeek, String review) {
         this.id = id;
+        this.studentId = studentId;
         this.courseCode = courseCode;
         this.rating = rating;
         this.difficulty = difficulty;
@@ -42,13 +46,23 @@ public class CourseReviewES {
         this.review = review;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
+
+
+    public Integer getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
+    }
+
 
     public String getCourseCode() {
         return courseCode;

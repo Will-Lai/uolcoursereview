@@ -74,6 +74,26 @@ public class CourseReviewDaoImpl implements CourseReviewDao {
         return courseReviewId;
     }
 
+    @Override
+    public void updateCourseReview(Integer courseReviewId, CourseReviewRequest courseReviewRequest) {
+        String sql = "UPDATE courseReview SET studentId = :studentId, courseCode = :courseCode, rating = :rating, difficulty = :difficulty, " +
+                "workload = :workload, studyHourPerWeek = :studyHourPerWeek, review = :review  " +
+                "WHERE id = :courseReviewId";
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("courseReviewId", courseReviewId);
+        map.put("studentId", courseReviewRequest.getStudentId());
+        map.put("courseCode", courseReviewRequest.getCourseCode());
+        map.put("rating", courseReviewRequest.getRating());
+        map.put("difficulty", courseReviewRequest.getDifficulty());
+        map.put("workload", courseReviewRequest.getWorkload());
+        map.put("studyHourPerWeek", courseReviewRequest.getStudyHourPerWeek());
+        map.put("review", courseReviewRequest.getReview());
+
+        namedParameterJdbcTemplate.update(sql, new MapSqlParameterSource(map));
+
+    }
+
     private String addFilteringSql(String sql, Map<String, Object> map, CourseReviewQueryParams courseReviewQueryParams) {
         if (courseReviewQueryParams.getCourseCode() != null) {
             sql = sql + " AND courseCode = :courseCode";

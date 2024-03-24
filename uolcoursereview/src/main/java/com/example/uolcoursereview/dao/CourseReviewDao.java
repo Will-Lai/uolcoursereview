@@ -11,5 +11,6 @@ public interface CourseReviewDao {
     CourseReview getCourseReviewById(Integer courseReviewId);
     List<CourseReview> getCourseReviews(CourseReviewQueryParams courseReviewQueryParams);
     Integer createCourseReview(CourseReviewRequest courseReviewRequest);
+    void updateCourseReview(Integer courseReviewId, CourseReviewRequest courseReviewRequest);
 
 }

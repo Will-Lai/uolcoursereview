@@ -20,7 +20,7 @@ public class RabbitMQConsumer {
     @RabbitListener(queues = {"${rabbitmq.queue.es.name}"})
     public void consume(CourseReviewES courseReviewES) throws IOException {
         LOGGER.info(String.format("Received message -> %s", courseReviewES.toString()));
-        LOGGER.info("courseReviewES id: {}, name: {}, review: {}", courseReviewES.getId(), courseReviewES.getCourseCode(), courseReviewES.getReview());
+        LOGGER.info("courseReviewES id: {}, studentId: {}, name: {}, review: {}", courseReviewES.getId(), courseReviewES.getStudentId(), courseReviewES.getCourseCode(), courseReviewES.getReview());
 
         // create
         esQuery.createOrUpdateDocument(courseReviewES);

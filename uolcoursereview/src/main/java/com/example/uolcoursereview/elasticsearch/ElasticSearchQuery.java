@@ -25,7 +25,7 @@ public class ElasticSearchQuery {
 
         IndexResponse response = elasticsearchClient.index(i -> i
                 .index(indexName)
-                .id(courseReviewES.getId())
+                .id(String.valueOf(courseReviewES.getId()))
                 .document(courseReviewES)
         );
 
