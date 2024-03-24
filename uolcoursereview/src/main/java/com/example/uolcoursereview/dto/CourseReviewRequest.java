@@ -5,7 +5,8 @@ import java.io.Serializable;
 
 public class CourseReviewRequest implements Serializable {
 
-
+    @NotNull
+    Integer studentId;
     @NotNull
     String courseCode;
     @NotNull
@@ -23,6 +24,15 @@ public class CourseReviewRequest implements Serializable {
     @NotNull
 
     String review;
+
+
+    public Integer getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
+    }
 
     public String getCourseCode() {
         return courseCode;

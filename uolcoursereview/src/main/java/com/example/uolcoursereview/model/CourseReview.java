@@ -3,6 +3,7 @@ package com.example.uolcoursereview.model;
 public class CourseReview {
 
     Integer id;
+    Integer studentId;
 
     String courseCode;
 
@@ -19,8 +20,9 @@ public class CourseReview {
     public CourseReview() {
     }
 
-    public CourseReview(Integer id, String courseCode, Integer rating, Integer difficulty, Integer workload, Integer studyHourPerWeek, String review) {
+    public CourseReview(Integer id, Integer studentId, String courseCode, Integer rating, Integer difficulty, Integer workload, Integer studyHourPerWeek, String review) {
         this.id = id;
+        this.studentId = studentId;
         this.courseCode = courseCode;
         this.rating = rating;
         this.difficulty = difficulty;
@@ -35,6 +37,14 @@ public class CourseReview {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
     }
 
     public String getCourseCode() {

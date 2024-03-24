@@ -12,6 +12,7 @@ public class CourseReviewRowMapper implements RowMapper<CourseReview> {
     public CourseReview mapRow(ResultSet rs, int rowNum) throws SQLException {
         // get data from database
         Integer id = rs.getInt("id");
+        Integer studentId = rs.getInt("studentId");
         String courseCode = rs.getString("courseCode");
         Integer rating = rs.getInt("rating");
         Integer difficulty = rs.getInt("difficulty");
@@ -20,7 +21,7 @@ public class CourseReviewRowMapper implements RowMapper<CourseReview> {
         String review = rs.getString("review");
 
         // transform data into Java object
-        CourseReview courseReview = new CourseReview(id, courseCode, rating, difficulty, workload, studyHourPerWeek, review);
+        CourseReview courseReview = new CourseReview(id, studentId, courseCode, rating, difficulty, workload, studyHourPerWeek, review);
         return courseReview;
     }
 }

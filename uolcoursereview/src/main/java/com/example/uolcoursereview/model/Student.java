@@ -4,6 +4,15 @@ public class Student {
     Integer id;
     String name;
     String email;
+    String password;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public Student() {
     }

@@ -50,10 +50,11 @@ public class StudentDaoImpl implements StudentDao {
     @Override
     public Integer createStudent(StudentRequest studentRequest) {
 
-        String sql = "INSERT INTO student(name, email) VALUE (:studentName, :studentEmail)";
+        String sql = "INSERT INTO student(name, email, password) VALUE (:studentName, :studentEmail, :password)";
         Map<String, Object> map = new HashMap<>();
         map.put("studentName", studentRequest.getName());
         map.put("studentEmail", studentRequest.getEmail());
+        map.put("password", studentRequest.getPassword());
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
@@ -70,5 +71,20 @@ public class StudentDaoImpl implements StudentDao {
         Map<String, Object> map = new HashMap<>();
         map.put("studentId", studentId);
         namedParameterJdbcTemplate.update(sql, map);
+    }
+
+    @Override
+    public Student getStudentByEmail(String email) {
+        String sql = "SELECT * FROM student WHERE email = :email";
+        Map<String, Object> map = new HashMap<>();
+
+        map.put("email", email);
+        List<Student> studentList = namedParameterJdbcTemplate.query(sql, map, new StudentRowMapper());
+
+        if (studentList.size() > 0) {
+            return studentList.get(0);
+        } else {
+            return null;
+        }
     }
 }

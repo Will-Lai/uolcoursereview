@@ -30,10 +30,12 @@ public class CourseReviewController {
 
     @GetMapping("/courseReviews")
     public ResponseEntity<List<CourseReview>> getCourseReviews(
-            @RequestParam(required = false) String courseCode
+            @RequestParam(required = false) String courseCode,
+            @RequestParam(required = false) Integer studentId
     ) {
         CourseReviewQueryParams courseReviewQueryParams = new CourseReviewQueryParams();
         courseReviewQueryParams.setCourseCode(courseCode);
+        courseReviewQueryParams.setStudentId(studentId);
 
         List<CourseReview> reviewList = courseReviewService.getCourseReviews(courseReviewQueryParams);
         return ResponseEntity.status(HttpStatus.OK).body(reviewList);
@@ -52,9 +54,10 @@ public class CourseReviewController {
         }
     }
 
-    @PostMapping("/courseReview")
+    @PostMapping("/courseReviews")
     public ResponseEntity<CourseReview> createCourseReview(@RequestBody @Valid CourseReviewRequest courseReviewRequest) throws IOException {
 
+        // validate student account to create a review
         Integer courseReviewId = courseReviewService.createCourseReview(courseReviewRequest);
 
         CourseReview courseReview = courseReviewService.getCourseReviewById(courseReviewId);
@@ -83,5 +86,11 @@ public class CourseReviewController {
 
         return new ResponseEntity<>(courseReviewESList, HttpStatus.OK);
     }
+
+
+//    @GetMapping("/students/{studentId}/courseReviews")
+//    public ResponseEntity<List<CourseReview>> getStudentCourseReviews(@PathVariable Integer studentId) {
+//
+//    }
 
 }

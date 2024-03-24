@@ -24,7 +24,7 @@ public class CourseReviewDaoImpl implements CourseReviewDao {
 
     @Override
     public CourseReview getCourseReviewById(Integer courseReviewId) {
-        String sql = "SELECT id, courseCode, rating, difficulty, workload, studyHourPerWeek, review " +
+        String sql = "SELECT id, studentId, courseCode, rating, difficulty, workload, studyHourPerWeek, review " +
                 "FROM courseReview WHERE id = :courseReviewId ";
         Map<String, Object> map = new HashMap<>();
 
@@ -42,7 +42,7 @@ public class CourseReviewDaoImpl implements CourseReviewDao {
     @Override
     public List<CourseReview> getCourseReviews(CourseReviewQueryParams courseReviewQueryParams) {
 
-        String sql = "SELECT id, courseCode, rating, difficulty, workload, studyHourPerWeek, review " +
+        String sql = "SELECT id, studentId, courseCode, rating, difficulty, workload, studyHourPerWeek, review " +
                 "FROM courseReview WHERE 1=1 ";
 
         Map<String, Object> map = new HashMap<>();
@@ -55,10 +55,11 @@ public class CourseReviewDaoImpl implements CourseReviewDao {
     @Override
     public Integer createCourseReview(CourseReviewRequest courseReviewRequest) {
 
-        String sql = "INSERT INTO courseReview(courseCode, rating, difficulty, workload, studyHourPerWeek, review) " +
-                "VALUE (:courseCode, :rating, :difficulty, :workload, :studyHourPerWeek, :review)";
+        String sql = "INSERT INTO courseReview(studentId, courseCode, rating, difficulty, workload, studyHourPerWeek, review) " +
+                "VALUE (:studentId, :courseCode, :rating, :difficulty, :workload, :studyHourPerWeek, :review)";
 
         Map<String, Object> map = new HashMap<>();
+        map.put("studentId", courseReviewRequest.getStudentId());
         map.put("courseCode", courseReviewRequest.getCourseCode());
         map.put("rating", courseReviewRequest.getRating());
         map.put("difficulty", courseReviewRequest.getDifficulty());
@@ -77,6 +78,11 @@ public class CourseReviewDaoImpl implements CourseReviewDao {
         if (courseReviewQueryParams.getCourseCode() != null) {
             sql = sql + " AND courseCode = :courseCode";
             map.put("courseCode",  courseReviewQueryParams.getCourseCode());
+        }
+
+        if (courseReviewQueryParams.getStudentId() != null) {
+            sql = sql + " AND studentId = :studentId";
+            map.put("studentId",  courseReviewQueryParams.getStudentId());
         }
 
         return sql;
